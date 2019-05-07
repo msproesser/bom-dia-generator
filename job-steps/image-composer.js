@@ -34,13 +34,15 @@ exports.default = async function(context) {
   -layers merge \\
   ./atmp/prhase.png `);
 
+  await exec(`convert -resize 1200x ./atmp/background.jpg ./atmp/final.png`)
+
   //concat the phrase to background 
   await exec(`composite \\
   -compose atop \\
   -gravity West \\
-  -dissolve 92 \\
+  -dissolve 90 \\
   ./atmp/prhase.png \\
-  ./atmp/background.jpg \\
+  ./atmp/final.png \\
   ./atmp/final.png
   `);
 

@@ -11,10 +11,12 @@ async function main(options) {
   const context = {
     mainText: options && options.mainText,
     phrase: options && options.phrase,
-    url: options && options.bgUrl
+    url: options && options.url
   };
-/*TODO: resize image bg before compose final image to keep same proportion
+/*TODO:
 implement new display options to text
+implement new flow optimizing operations with idle (background download, html download/render)
+make possible the concurrency
 
 */
   const steps = [
