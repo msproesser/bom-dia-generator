@@ -7,12 +7,16 @@ async function generateMainText(context) {
   context.mainText = context.mainText || 'Bom dia!';
 }
 
-async function main() {
+async function main(options) {
   const context = {
-    // url: 'https://cdn.pixabay.com/photo/2013/10/02/23/03/dog-190056_960_720.jpg',
-    mainText: 'Bom dia!',
-    // phrase: 'Capota gostoso que amanhã tem mais, é luta todo dia'
+    mainText: options && options.mainText,
+    phrase: options && options.phrase,
+    url: options && options.bgUrl
   };
+/*TODO: resize image bg before compose final image to keep same proportion
+implement new display options to text
+
+*/
   const steps = [
     require('./job-steps/background-picker').default,
     require('./job-steps/phrase-generator').default,

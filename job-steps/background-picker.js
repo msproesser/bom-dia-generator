@@ -15,6 +15,8 @@ function objectToQuery(obj) {
 }
 
 exports.default = async function searchBackground(context) {
+  if(context.url) return;
+  
   parameters.page = randomInt(2) + 1;
   const props = objectToQuery(parameters);
   const url = `https://pixabay.com/api/${props}`;
