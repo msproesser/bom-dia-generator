@@ -7,36 +7,22 @@ make possible the concurrency
 implement senders
 */
 const uuid = require('uuid/v4')
-module.exports = async function generate(context) {
+const generateBackground = require('./job-steps/generate-background');
+const generatePhrase = require('./job-steps/generate-phrase');
+const generateTitle = require('./job-steps/generate-title');
+const mergeImages = require('./job-steps/commons/merge-images');
+
+module.exports = function generate(context) {
   context.uuid = uuid();
-  await Promise.all([
-    //process and prepare background image
+  return Promise.all([
     generateBackground(context),
-    //process and prepare phrase image
     generatePhrase(context),
-    //process and prepare title image
     generateTitle(context)
   ])
   .then(() => mergeImages(context))
   .then(() => tagFinalImage(context))
   .finally(() => cleanup(context))
   .then(() => context)
-}
-
-async function generateBackground(context) {
-
-}
-
-async function generatePhrase(context) {
-
-}
-
-async function generateTitle(context) {
-
-}
-
-async function mergeImages(context) {
-
 }
 
 async function tagFinalImage(context) {
