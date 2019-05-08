@@ -13,12 +13,7 @@ async function main(options) {
     phrase: options && options.phrase,
     url: options && options.url
   };
-/*TODO:
-implement new display options to text
-implement new flow optimizing operations with idle (background download, html download/render)
-make possible the concurrency
 
-*/
   const steps = [
     require('./job-steps/background-picker').default,
     require('./job-steps/phrase-generator').default,
