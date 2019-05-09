@@ -22,6 +22,7 @@ module.exports = function generate(context) {
   .then(() => tagFinalImage(context))
   .catch((e) => console.log('error is', e))
   .then(() => cleanup(context))
+  .then(() => shareImage(context))
   .then(() => context)
 }
 
@@ -29,4 +30,8 @@ async function cleanup(context) {
   const util = require('util');
   const exec = util.promisify(require('child_process').exec);
   await exec(`rm ./atmp/${context.uuid}*`)
+}
+
+async function shareImage(context) {
+  await require('./senders')(context)
 }
