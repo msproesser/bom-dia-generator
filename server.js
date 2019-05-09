@@ -8,7 +8,7 @@ app.get('/bom-dia', (req, res) => {
   bomDiaGenerator(req.query).then((context) => {
     console.log('request processed');
     res.setHeader('Content-Type', 'image/png');
-    res.end(fs.readFileSync(`./atmp/${context.uuid}-final.png`), 'binary');
+    res.end(fs.readFileSync(`./final-imgs/${context.uuid}-final.jpg`), 'binary');
   })
 })
 

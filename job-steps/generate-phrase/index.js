@@ -1,5 +1,5 @@
 const pickRandomPhrase = require('./phrase-generator').default;
-const drawPhraseImage = require('../commons/draw-text-image');
+const drawPhraseImage = require('../commons/image-utils').drawTextImage;
 
 module.exports = async function generatePhrase(context) {
   if (!context.phrase) {

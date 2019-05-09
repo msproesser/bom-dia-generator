@@ -1,4 +1,4 @@
-const drawPhraseImage = require('../commons/draw-text-image');
+const drawPhraseImage = require('../commons/image-utils').drawTextImage;
 
 module.exports = async function generateTitle(context) {
   if (!context.title) {
