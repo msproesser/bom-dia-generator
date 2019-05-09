@@ -1,9 +1,6 @@
 /*TODO:
-reestructure the step flow
 implement new display options to text
 implement new parametrizations to input
-how to opmtimize the operations with idle (background download, html download/render)
-make possible the concurrency
 implement senders
 add logs to steps
 */
@@ -32,5 +29,5 @@ async function tagFinalImage(context) {
 }
 
 async function cleanup(context) {
-  
+
 }
