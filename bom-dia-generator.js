@@ -5,6 +5,7 @@ implement new parametrizations to input
 how to opmtimize the operations with idle (background download, html download/render)
 make possible the concurrency
 implement senders
+add logs to steps
 */
 const uuid = require('uuid/v4')
 const generateBackground = require('./job-steps/generate-background');
@@ -21,7 +22,8 @@ module.exports = function generate(context) {
   ])
   .then(() => mergeImages(context))
   .then(() => tagFinalImage(context))
-  .finally(() => cleanup(context))
+  .catch((e) => console.log('error is', e))
+  .then(() => cleanup(context))
   .then(() => context)
 }
 

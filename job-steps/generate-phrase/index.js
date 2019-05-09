@@ -1,4 +1,4 @@
-const pickRandomPhrase = require('./phrase-generator');
+const pickRandomPhrase = require('./phrase-generator').default;
 const drawPhraseImage = require('../commons/draw-text-image');
 
 module.exports = async function generatePhrase(context) {
