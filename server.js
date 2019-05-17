@@ -8,6 +8,10 @@ app.get('/generate', (req, res) => {
   bomDiaGenerator(req.query).then((context) => {
     console.log('request processed');
     res.setHeader('Content-Type', 'image/jpg');
+    res.setHeader('original-background', context.background);
+    res.setHeader('choosen-phrase', context.phrase);
+    res.setHeader('choosen-title', context.title);
+    
     res.end(fs.readFileSync(`./final-imgs/${context.uuid}-final.jpg`), 'binary');
   })
 })
