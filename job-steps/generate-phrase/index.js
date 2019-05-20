@@ -1,4 +1,5 @@
-const pickRandomPhrase = require('./phrase-generator').default;
+const pickPhraseByFilter = require('./phrase-filter-picker');
+const pickPhraseByTheme = require('./phrase-theme-picker');
 const drawPhraseImage = require('../commons/image-utils').drawTextImage;
 
 
@@ -9,6 +10,6 @@ async function pickPhrase(context) {
   return await pickPhraseByTheme('default')
 }
 module.exports = async function generatePhrase(context) {
-  context.phrase = pickPhrase(context);
+  context.phrase = await pickPhrase(context);
   await drawPhraseImage(context.phrase, 'phrase', context.uuid, {gravity: 'west', size:'600x600'});
 }
