@@ -1,5 +1,4 @@
 /*TODO:
-use dependency injection?
 implement new display options to text
 implement new parametrizations to input
 implement better error handlers
@@ -38,7 +37,7 @@ module.exports = async function generate(context) {
     await mergeImages(context)
     await tagFinalImage(context)
     await cleanup(context)
-    await shareImage(context)
+    await require('./senders')(context)
   } catch(e) {
     console.log('error is', e)
   }
@@ -49,8 +48,4 @@ async function cleanup(context) {
   const util = require('util');
   const exec = util.promisify(require('child_process').exec);
   await exec(`rm ./atmp/${context.uuid}*`)
-}
-
-async function shareImage(context) {
-  await require('./senders')(context)
 }
