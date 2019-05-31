@@ -2,14 +2,13 @@ const axios = require('axios');
 const host = require('../config').host;
 module.exports = async function(context) {
   if (context.send) {
-    googleSender(context)
+    //googleSender(context)
   }
 }
 
 async function googleSender(context) {
   const message = buildGMessage(context);
   const response = await axios.post('https://chat.googleapis.com/v1/spaces/AAAAJ1mYa0U/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=MKyc3vYVE7E5WK17omBBWJ1jF4pwFtJ9SVBt1tGOm8Q%3D', message)
-  console.log(response.data)
 }
 
 function buildGMessage(context) {

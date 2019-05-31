@@ -61,5 +61,5 @@ typings/
 .next
 
 atmp/*
-
+dist/*
 final-imgs/

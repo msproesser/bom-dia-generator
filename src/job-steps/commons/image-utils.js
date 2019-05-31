@@ -2,7 +2,6 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
 exports.mergeImages = async function(context) {
-    console.log('starting merge');
     await exec(`convert -resize 1200x ./atmp/${context.uuid}-background.jpg ./atmp/${context.uuid}-final.png`)
 
     //concat the phrase to background 
@@ -24,7 +23,7 @@ exports.mergeImages = async function(context) {
     ./atmp/${context.uuid}-final.png \\
     ./atmp/${context.uuid}-final.png
     `);
-    console.log(`merged images for ${context.uuid}`);
+    return `merged images for ${context.uuid}`;
 }
 
 exports.drawTextImage = async function(text, filename, prefix, {gravity = 'center', size, textType = 'caption'}) {
@@ -43,7 +42,7 @@ exports.drawTextImage = async function(text, filename, prefix, {gravity = 'cente
   -background transparent \\
   -layers merge \\
   ./atmp/${prefix}-${filename}.png `);
-  console.log(`${filename} drawn`)
+  return `${filename} drawn`;
 }
 
 exports.tagFinalImage = async function(context) {

@@ -5,7 +5,7 @@ const drawPhraseImage = require('../commons/image-utils').drawTextImage;
 
 async function pickPhrase(context) {
   if (context.phrase) return context.phrase;
-  if (context.phraseFilter) return await pickPhraseByFilter(context.phraseFilter);
+  if (context.phraseFilter) return await pickPhraseByFilter(context.phraseFilter, context.phraseSource);
   if (context.theme) return await pickPhraseByTheme(context.theme);
   return await pickPhraseByTheme('default')
 }

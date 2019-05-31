@@ -22,7 +22,6 @@ module.exports = function pixabayBackgroundSearch(filterOptions) {
     filterOptions.page = randomInt(filterOptions.page) + 1;
     const props = objectToQuery(parameters(filterOptions));
     const url = `https://pixabay.com/api/${props}`;
-    console.log(url);
     const imgList = (await axios.get(url)).data.hits;
     const imgPicked = imgList[randomInt(imgList.length)].largeImageURL;
     return imgPicked;
