@@ -1,6 +1,6 @@
-const pickBackgroundByFilter = require('./background-filter-picker');
-const pickBackgroundByTheme = require('./background-theme-picker');
-const downloadImage = require('../commons/url-downloader');
+import pickBackgroundByFilter from './background-filter-picker';
+import pickBackgroundByTheme from './background-theme-picker';
+import downloadImage from '../commons/url-downloader';
 
 async function pickUrl(context) {
   if (context.background) return context.background;
@@ -9,7 +9,7 @@ async function pickUrl(context) {
   return await pickBackgroundByTheme('default')
 }
 
-module.exports = async function generateBackground(context) {
+export default async function generateBackground(context) {
   context.background = await pickUrl(context);
   await downloadImage(context.background, 'background', context.uuid);
 }

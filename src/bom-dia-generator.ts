@@ -5,6 +5,8 @@ implement better error handlers
 implement senders (email)
 add logs (winston) to steps
 how to swagger
+remove or create notification for default option
+externalize filters and themes configuration
 optimize CI/CD
   docker image
   container auto update on push
@@ -29,25 +31,25 @@ import senders from './senders';
 
 interface Context {
   uuid: string;
-  bla: string;
+  theme: string;
 }
 
 module.exports = async function generate(context: Context) {
   context.uuid = uuid();
-  await handleError(Promise.all([
-    handleError(generateBackground(context), 'generateBackground'),
-    handleError(generatePhrase(context), 'generatePhrase'),
-    handleError(generateTitle(context), 'generateTitle'),
+  await stepWrapper(Promise.all([
+    stepWrapper(generateBackground(context), 'generateBackground'),
+    stepWrapper(generatePhrase(context), 'generatePhrase'),
+    stepWrapper(generateTitle(context), 'generateTitle'),
   ]), 'Promise.all imageGeneration');
-  await handleError(mergeImages(context), 'mergeImages');
-  await handleError(tagFinalImage(context), 'tagFinalImage');
-  await handleError(cleanup(context), 'cleanup');
-  await handleError(senders(context), 'senders');
+  await stepWrapper(mergeImages(context), 'mergeImages');
+  await stepWrapper(tagFinalImage(context), 'tagFinalImage');
+  await stepWrapper(cleanup(context), 'cleanup');
+  await stepWrapper(senders(context), 'senders');
 
   return context
 }
 
-function handleError(promise: Promise<any>, location: String) {
+function stepWrapper(promise: Promise<any>, location: String) {
   return promise
   .then(details => console.log(`[STEP:  ${location} ]: finished`, details || ''))
   .catch(error => {

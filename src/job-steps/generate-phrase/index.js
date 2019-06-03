@@ -1,6 +1,6 @@
-const pickPhraseByFilter = require('./phrase-filter-picker');
-const pickPhraseByTheme = require('./phrase-theme-picker');
-const drawPhraseImage = require('../commons/image-utils').drawTextImage;
+import pickPhraseByFilter from './phrase-filter-picker';
+import pickPhraseByTheme from './phrase-theme-picker';
+import { drawTextImage as drawPhraseImage } from '../commons/image-utils';
 
 
 async function pickPhrase(context) {
@@ -9,7 +9,7 @@ async function pickPhrase(context) {
   if (context.theme) return await pickPhraseByTheme(context.theme);
   return await pickPhraseByTheme('default')
 }
-module.exports = async function generatePhrase(context) {
+export default async function generatePhrase(context) {
   context.phrase = await pickPhrase(context);
   await drawPhraseImage(context.phrase, 'phrase', context.uuid, {gravity: 'west', size:'600x600'});
 }

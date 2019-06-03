@@ -1,6 +1,7 @@
 const phraseFilters = {};
 phraseFilters['opensador'] = require('./pickers/opensador')
-module.exports = function(filterName, source = 'opensador') {
+
+export default function(filterName, source = 'opensador') {
   const [name, pages] = filterName.split(':')
   if (phraseFilters[source]) {
     return phraseFilters[source]({
