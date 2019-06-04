@@ -8,35 +8,48 @@ interface PixaBayFilterOptions {
   page: number,
   source?: string
 }
-function pixabayFilter(options: PixaBayFilterOptions) {
-  options.source = 'pixabay';
-  return options;
+
+interface Theme {
+  key: string,
+  backgrounds: Array<string>,
+  phrases: Array<SourceFilter>,
+  titles: Array<string>,
 }
+
 interface SourceFilter {
   source: string,
   filter: string
 }
-
-const themes: any = {
-  backgroundFilters: [
-    kv('default', pixabayFilter({query: 'sunrise+landscape', category: 'nature', page: 1})),
-    kv('pixabay.bom-dia', pixabayFilter({query: 'sunrise+landscape', category: 'nature', page: 1})),
-    kv('pixabay.boa-tarde', pixabayFilter({query: 'sunset', category: 'nature', page: 1})),
-    kv('pixabay.boa-noite', pixabayFilter({query: 'night', category: 'nature', page: 1})),
-    kv('pixabay.naruto', pixabayFilter({query: 'ninja', category: 'all', page: 1}))
-  ]
-};
-function addTheme(name: string, backgrounds: Array<string>, phrases: Array<SourceFilter>, titles: Array<string>) {
-  themes[name] = { backgrounds, phrases, titles };
+function pixabayFilter(options: PixaBayFilterOptions) {
+  options.source = 'pixabay';
+  return options;
 }
-addTheme('default', 
-  ['default'], 
-  [
+
+const defaultBackgroundFilter = kv('default', pixabayFilter({query: 'sunrise+landscape', category: 'nature', page: 1}));
+
+const backgroundFilters = [
+  defaultBackgroundFilter,
+  kv('pixabay.bom-dia', pixabayFilter({query: 'sunrise+landscape', category: 'nature', page: 1})),
+  kv('pixabay.boa-tarde', pixabayFilter({query: 'sunset', category: 'nature', page: 1})),
+  kv('pixabay.boa-noite', pixabayFilter({query: 'night', category: 'nature', page: 1})),
+  kv('pixabay.naruto', pixabayFilter({query: 'ninja', category: 'all', page: 1}))
+]
+
+const themes: Array<Theme> = [];
+function addTheme(name: string, backgrounds: Array<string>, phrases: Array<SourceFilter>, titles: Array<string>) {
+  themes.push({ key: name, backgrounds, phrases, titles });
+}
+
+const defaultTheme: Theme = {
+  key: 'default',
+  backgrounds: ['default'],
+  phrases: [
     {source: 'opensador', filter: 'frases_de_motivacao:900'},
     {source: 'opensador', filter: 'pensamentos_filosoficos:15'}
-  ], 
-  ['Bom dia!']
-);
+  ],
+  titles: ['Bom dia!']
+}
+themes.push(defaultTheme);
 
 addTheme('bom-dia', 
   ['pixabay.sunrise'],
@@ -64,4 +77,13 @@ addTheme('boa-noite',
   ],
   ['Boa noite!']
 );
-module.exports = themes;
+
+function pickTheme(themeName: string) : Theme {
+  const theme: Theme = themes.filter(theme => theme.key === themeName)[0]
+  return theme || defaultTheme;
+}
+
+function pickBackgroundFilter(filterName: string) {
+  return backgroundFilters.filter(filter => filter.key === filterName)[0] || defaultBackgroundFilter;
+}
+export {pickTheme, pickBackgroundFilter};

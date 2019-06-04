@@ -22,7 +22,7 @@ optimize CI/CD
  * 
  */
 import uuid from 'uuid/v4';
-import generateBackground from './job-steps/generate-background';
+import generateBackground from './job-steps/generate-background/generate-background';
 import generatePhrase from './job-steps/generate-phrase';
 import generateTitle from './job-steps/generate-title';
 import {mergeImages} from './job-steps/commons/image-utils';
