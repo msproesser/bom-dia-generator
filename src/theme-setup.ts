@@ -2,7 +2,7 @@ function kv(key: string, value: any) {
   return {key, value}
 }
 
-interface PixaBayFilterOptions {
+interface FilterOptions {
   query: string,
   category: string,
   page: number,
@@ -20,7 +20,7 @@ interface SourceFilter {
   source: string,
   filter: string
 }
-function pixabayFilter(options: PixaBayFilterOptions) {
+function pixabayFilter(options: FilterOptions) {
   options.source = 'pixabay';
   return options;
 }

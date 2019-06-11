@@ -25,7 +25,7 @@ async function pickUrl(context: any) {
   if (context.theme) return await pickBackgroundByTheme(context.theme);
   return await pickBackgroundByTheme('default')
 }
-//
+
 export default async function generateBackground(context: any) {
   context.background = await pickUrl(context);
   await downloadImage(context.background, 'background', context.uuid);

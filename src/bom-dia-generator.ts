@@ -1,12 +1,11 @@
 /*TODO:
 implement new display options to text
 implement new parametrizations to input
-implement better error handlers
+implement new layer to parametrize texts location
 implement senders (email)
 add logs (winston) to steps
 how to swagger
 remove or create notification for default option
-externalize filters and themes configuration
 optimize CI/CD
   docker image
   container auto update on push
@@ -23,7 +22,7 @@ optimize CI/CD
  */
 import uuid from 'uuid/v4';
 import generateBackground from './job-steps/generate-background/generate-background';
-import generatePhrase from './job-steps/generate-phrase';
+import generatePhrase from './job-steps/generate-phrase/generate-phrase';
 import generateTitle from './job-steps/generate-title';
 import {mergeImages} from './job-steps/commons/image-utils';
 import {tagFinalImage} from './job-steps/commons/image-utils';
