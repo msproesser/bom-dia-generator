@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/uuid": "^3.4.4",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.16.4",
     "file-saver": "^2.0.1",
