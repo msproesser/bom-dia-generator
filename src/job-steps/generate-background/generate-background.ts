@@ -1,6 +1,6 @@
 import downloadImage from '../commons/url-downloader';
-import { randomInt } from '../../utils';
-const {pickTheme, pickBackgroundFilter} = require('../../theme-setup');
+import { randomItem } from '../../utils';
+import { pickTheme, pickBackgroundFilter } from '../../theme-setup';
 
 const backgroundFilterSources: any = {
   default: require('./pickers/pixabay'),
@@ -9,7 +9,7 @@ const backgroundFilterSources: any = {
 
 function pickBackgroundByTheme(theme: string) {
   const choosenTheme = pickTheme(theme).backgrounds;
-  const choosenFilter = choosenTheme[randomInt(choosenTheme.length)];
+  const choosenFilter = randomItem(choosenTheme);
   return filterPicker(choosenFilter);
 }
 

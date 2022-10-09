@@ -1,12 +1,12 @@
 import { drawTextImage as drawPhraseImage } from '../commons/image-utils';
 import {pickTheme} from '../../theme-setup';
-import {randomInt} from '../../utils'
+import {randomItem} from '../../utils'
 function pickTitle(context: any) {
   if (context.title) return context.title;
   if(context.theme) {
     const {titles} = pickTheme(context.theme)
     if (titles.length > 0) {
-      return titles[randomInt(titles.length)]
+      return randomItem(titles.length)
     }
   }
   return "Bom dia!";

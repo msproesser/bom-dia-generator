@@ -63,3 +63,5 @@ typings/
 atmp/*
 dist/*
 final-imgs/
+
+.DS_Store

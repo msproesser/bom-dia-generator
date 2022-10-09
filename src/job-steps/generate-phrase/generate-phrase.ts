@@ -1,5 +1,5 @@
 import { drawTextImage } from '../commons/image-utils';
-import { randomInt } from '../../utils';
+import { randomItem } from '../../utils';
 import { pickTheme } from '../../theme-setup';
 
 //TODO: extract the phraseFilteSources to theme-setup
@@ -19,7 +19,7 @@ function pickPhraseByFilter(filterName: string, source: string) {
 
 async function pickPhraseByTheme(theme: string) {
   const choosenTheme = pickTheme(theme).phrases;
-  const choosenFilter = choosenTheme[randomInt(choosenTheme.length)];
+  const choosenFilter = randomItem(choosenTheme);
   return pickPhraseByFilter(choosenFilter.filter, choosenFilter.source);
 }
 

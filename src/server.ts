@@ -1,6 +1,6 @@
 const app = require('express')();
-const bomDiaGenerator = require('./bom-dia-generator');
-const fs = require('fs');
+import bomDiaGenerator from './bom-dia-generator';
+import fs from 'fs';
 
 app.get('/generate', (req: any, res: any) => {
   console.log('new request received');

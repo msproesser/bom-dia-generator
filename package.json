@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts"
+    "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts",
+    "run": "ts-node-dev --respawn --transpileOnly ./src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.31",
     "nodemon": "^1.19.1",
     "ts-node-dev": "^1.0.0-pre.39",
     "typescript": "^3.4.5"

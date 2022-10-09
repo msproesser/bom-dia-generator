@@ -33,7 +33,7 @@ interface Context {
   theme: string;
 }
 
-module.exports = async function generate(context: Context) {
+export default async function generate(context: Context) {
   context.uuid = uuid();
   await stepWrapper(Promise.all([
     stepWrapper(generateBackground(context), 'generateBackground'),
