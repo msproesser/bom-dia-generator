@@ -6,7 +6,7 @@ function pickTitle(context: any) {
   if(context.theme) {
     const {titles} = pickTheme(context.theme)
     if (titles.length > 0) {
-      return randomItem(titles.length)
+      return randomItem(titles)
     }
   }
   return "Bom dia!";

@@ -5,6 +5,7 @@ import { pickTheme } from '../../theme-setup';
 //TODO: extract the phraseFilteSources to theme-setup
 const phraseFiltersSources: Record<string, Function> = {};
 phraseFiltersSources['opensador'] = require('./pickers/opensador')
+phraseFiltersSources['oberlo'] = require('./pickers/oberlo')
 
 function pickPhraseByFilter(filterName: string, source: string) {
   const [name, pages] = filterName.split(':')

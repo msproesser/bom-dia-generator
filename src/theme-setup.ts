@@ -49,8 +49,16 @@ const defaultTheme: Theme = {
   ],
   titles: ['Bom dia!']
 }
+
 themes.push(defaultTheme);
 
+addTheme('good-morning',
+  ['pixabay.subrise'],
+  [
+    {source: 'oberlo', filter: ''}
+  ],
+  ['Good morning']
+)
 addTheme('bom-dia', 
   ['pixabay.sunrise'],
   [
